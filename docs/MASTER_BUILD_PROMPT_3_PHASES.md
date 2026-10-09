@@ -1,5 +1,5 @@
 # MASTER BUILD PROMPT — ERRANDGO / WORKING CODENAME
-**Version:** 2.0  
+**Version:** 2.1  
 **Date:** 9 October 2026  
 **Purpose:** One end-to-end engineering instruction for building the full platform in three implementation phases.  
 **Primary launch market:** Lagos, Nigeria  
@@ -20,7 +20,7 @@ You are the lead full-stack engineer responsible for building the complete produ
 This is ONE system delivered in THREE coordinated implementation phases:
 
 ## Phase 1 — Web Platform / Public Website
-Build the premium 2027-standard public website and responsive customer-facing web application.
+Preserve and evolve the existing Vite 5 + React 18 + TypeScript + Tailwind CSS 3 frontend already in this repository. Do **not** redesign, replace, or migrate the approved visual implementation merely to change frameworks. Refactor safely into reusable components/modules while retaining the existing look, layout, responsive behavior, and premium design direction. Deploy the web platform to Vercel.
 
 ## Phase 2 — Admin Command Center
 Build the full operations, compliance, payments, KYC, support, analytics, and platform-control dashboard.
@@ -83,19 +83,30 @@ No business rule should be duplicated inconsistently between web, admin, and mob
 
 # 3. REQUIRED TECHNOLOGY STACK
 
-## Shared Web Stack
+## Phase 1 Web Stack — Preserve Existing Frontend
+- Vite 5
+- React 18
+- TypeScript
+- Tailwind CSS 3
+- Lucide icons
+- Existing visual design and responsive implementation are authoritative design references.
+- Add React Router (or equivalent) only when route separation is required.
+- Add React Hook Form + Zod for production forms.
+- Add TanStack Query where server-state caching is needed.
+- Add Motion/Framer Motion only where it improves the approved UI.
+- Add Zustand only where lightweight shared client state is justified.
+- Do not introduce Supabase.
+
+## Phase 2 Admin Stack
 - Next.js 15+
 - React
 - TypeScript strict mode
 - App Router
 - Tailwind CSS
 - shadcn/ui or equivalent accessible primitives
-- Framer Motion / Motion
-- Lucide icons
-- React Hook Form
-- Zod
 - TanStack Query where useful
-- Zustand only where justified
+- Zod / React Hook Form
+- Vercel deployment
 
 ## Web Hosting
 - Vercel
@@ -1058,14 +1069,15 @@ Mobile:
 
 # 21. REPOSITORY STRATEGY
 
-Preferred monorepo:
+Preferred non-destructive repository evolution:
 
 ```text
 /
+├── src/                 # Existing Vite/React/Tailwind web app — preserve and refactor in place
+├── public/
 ├── apps/
-│   ├── web/
-│   ├── admin/
-│   └── mobile/
+│   ├── admin/           # Next.js / Vercel
+│   └── mobile/          # React Native / Expo
 ├── packages/
 │   ├── ui/
 │   ├── domain/
@@ -1084,7 +1096,7 @@ Preferred monorepo:
 └── .env.example
 ```
 
-Web and Admin may share Next.js foundations while remaining cleanly separated as applications/routes.
+The existing web app remains Vite/React/Tailwind unless a later founder/engineering decision explicitly approves a migration. Admin is a separate Next.js application. Mobile is a separate React Native/Expo application. Shared business rules, types, validation, provider contracts and configuration belong in shared packages rather than being duplicated.
 
 ---
 
@@ -1237,14 +1249,15 @@ Use safe configurable placeholders and document all assumptions.
 Start in this exact order:
 
 ## Phase 1
-1. Monorepo setup.
-2. Web app.
-3. Shared design system.
-4. Public website.
-5. Web auth.
-6. Customer web app.
-7. Vercel deployment.
-8. QA.
+1. Preserve the existing Vite/React/Tailwind frontend and remove unused Supabase dependencies.
+2. Refactor the current single-file prototype safely into reusable modules/components without visual regression.
+3. Establish shared design tokens/components from the current approved design.
+4. Complete the public website.
+5. Add production-ready web auth surfaces.
+6. Complete the customer web application flows.
+7. Introduce Firebase client integration only when the backend foundation is ready.
+8. Deploy/maintain the web frontend on Vercel.
+9. Run visual-regression, responsive and accessibility QA.
 
 ## Phase 2
 9. Admin app.

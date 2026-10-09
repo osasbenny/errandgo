@@ -1,5 +1,5 @@
 # ErrandGo Decision Log
-**Version:** 1.0  
+**Version:** 1.1  
 **Date:** 9 October 2026
 
 This file is the running source of truth for important founder, product, business and technical decisions. Do not rely on memory or scattered chat messages for material decisions.
@@ -111,3 +111,13 @@ For each decision record:
 10. Cancellation/refund policy.
 11. Maximum pilot task value.
 12. Salary/stipend trigger.
+
+
+## D-018 — Preserve Existing Web Frontend / Remove Supabase
+**Status:** Approved  
+**Decision:** Preserve the existing Vite 5 + React 18 + TypeScript + Tailwind CSS 3 web implementation as the Phase 1 visual/frontend baseline. Remove the unused Supabase SDK. Do not migrate or redesign the web frontend merely to conform to the earlier Next.js proposal.  
+**Production backend:** Firebase Auth, Firestore, Cloud Functions, Firebase Storage and FCM.  
+**Admin:** separate Next.js/Vercel application under `apps/admin`.  
+**Mobile:** separate React Native/Expo application under `apps/mobile`.  
+**Shared logic:** reusable domain types, validation, configuration and provider contracts under shared packages.  
+**Reason:** retain the approved working design and avoid destructive/redundant frontend migration while still converging on the approved production backend and multi-surface architecture.

@@ -23,7 +23,7 @@ The first validation gate is 100 successfully completed paid errands through a c
 ## Engineering direction
 
 Target architecture:
-- Next.js / TypeScript / Tailwind / Vercel for web.
+- Existing Vite 5 / React 18 / TypeScript / Tailwind CSS 3 frontend preserved and deployed on Vercel.
 - Next.js / Vercel for Admin Command Center.
 - React Native / Expo for mobile.
 - Firebase Auth, Firestore, Storage, Cloud Functions and FCM.
@@ -32,5 +32,9 @@ Target architecture:
 - Google Maps Platform for location services.
 
 All unresolved founder/business decisions are tracked in `docs/current/DECISIONS.md`.
+
+## Non-destructive frontend rule
+
+The current Vite/React/Tailwind visual implementation is the approved Phase 1 baseline. Do not replace it with a framework migration or redesign. Refactor it safely in place while wiring the approved Firebase/Google Cloud backend. Supabase is not part of the production stack.
 
 © 2026 ErrandGo. Working project name subject to final founder branding approval.
